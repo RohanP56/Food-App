@@ -109,13 +109,12 @@ function postSignUp(req, res) {
 //cookies function implementation
 function setCookies(req, res) {
   //res.setHeader("Set-Cookie", "isLoggedIn=true");  // here we set cookie manually
-  res.cookie("isLoggedIn", true);  // set cookie using cookie parser
+  res.cookie("isLoggedIn", true, {maxAge: 1000*60*60*24, secure: true, httpOnly: true});  // set cookie using cookie parser, this cookie will be active for 1 day
   res.send("Cookies set successfully");
 }
 
 function getCookies(req, res) {
-  //console.log(req.cookies);
- /* res.json({
-    message: "Cookies fetched successfully",
-  });*/
+  let cookies = req.cookies;
+  console.log(req.cookies);
+  res.send("Cookies recieved");
 }

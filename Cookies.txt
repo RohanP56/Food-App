@@ -6,6 +6,10 @@
     1. set-Cookie
     2. key, Value pair of the cookie
 - We can also set the expiry date of the cookie.
+- We can also set the max age of the cookie.
 - We can also set the path of the cookie.
 - We can also set the domain of the cookie.
 - We can also set the secure flag of the cookie.
+- {secure: true} now the cookie will be sent only over HTTPS.
+- {httpOnly: true} now the cookie can't be accessed by font-end.
+

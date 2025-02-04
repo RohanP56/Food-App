@@ -1,12 +1,13 @@
 const express = require("express");
 const userModel = require("../models/userModel");
+const {protectRoute} = require("./authHelper");
 
 
 const userRouter = express.Router(); //created user router
 
 userRouter
   .route("/")
-  .get(getUsers)
+  .get(protectRoute, getUsers)
   .post(postUser)
   .patch(updateUser)
   .delete(deleteUser);
@@ -80,5 +81,6 @@ function getCookies(req, res) {
   console.log(req.cookies);
   res.send("Cookies recieved");
 }
+
 
 module.exports = userRouter;

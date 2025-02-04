@@ -28,7 +28,8 @@ async function loginUser(req, res) {
       let user = await userModel.findOne({ email: data.email });
       if (user) {
         //bcypt --> Compare the password
-        if (user.password == data.password) {
+        if (user.password === data.password) {
+          res.cookie("isLoggedIn", true, {httpOnly: true}); //cookie is set
           return res.json({
             message: "User has logged in",
             userDetails: data,

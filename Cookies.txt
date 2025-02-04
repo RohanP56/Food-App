@@ -1,0 +1,11 @@
+- Cookie is used to store data in user browser.
+- When we get a request from browser to server then browser also send some data to server.after that server also send a response. At that point of time server create a cookie which decide whatt data will be stored and how much times. when browser send us a request next time then browser also send the cookie to server, now server validate the cookie and can access the cookie data.
+- Inside cookie there present JWT.
+- We create cookie inside header function (res.setHeader)
+- This function takes 2 parameters:
+    1. set-Cookie
+    2. key, Value pair of the cookie
+- We can also set the expiry date of the cookie.
+- We can also set the path of the cookie.
+- We can also set the domain of the cookie.
+- We can also set the secure flag of the cookie.

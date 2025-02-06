@@ -43,7 +43,17 @@ const userSchema = mongoose.Schema({
     },
     //message: "Password and confirm password do not match",
   },
+  role:{
+    type:String,
+    enum:["admin","user", "restaurantowner", "deliveryperson"],
+    default:"user"
+  },
+  profileImage:{
+    type:String,
+    default:"",  ///default image from public folder
+  },
 });
+
 
 //we don't want to save the confirmPassword in the database
 userSchema.pre("save", function () {
@@ -62,28 +72,5 @@ userSchema.pre("save", async function () {
 
 
 
-
-
-
-
-
-
-
 const userModel = mongoose.model("userModel", userSchema);
 module.exports = userModel;
-
-
-
-
-/*Mongoose hooks pre, post , remove
-pre hook
-userSchema.pre("save",function() {
-  console.log("Before save in DB", this);
-});
-
-//post hook
-userSchema.post("save",function(doc) {
-  console.log("After save in DB", doc);
-});
-
-*/

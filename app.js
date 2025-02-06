@@ -10,13 +10,13 @@ app.use(cookieParser());
 
 
 // mini application
-const userRouter = require('./routers/userRouter.js');
-const authRouter = require('./routers/authRouter.js');
+const userRouter = require('./Routers/userRouter.js');
+//const authRouter = require('./routers/authRouter.js');
 
 
 //base route, router to use
 app.use("/user", userRouter);
-app.use("/auth", authRouter);
+//app.use("/auth", authRouter);
 
 
 

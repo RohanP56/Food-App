@@ -49,7 +49,9 @@ const userSchema = mongoose.Schema({
     type:String,
     default:"",  ///default image from public folder
   },
+  resetToken: String,
 });
+
 
 
 //we don't want to save the confirmPassword in the database

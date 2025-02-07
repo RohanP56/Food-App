@@ -28,7 +28,6 @@ module.exports.signup = async function signup(req, res) {
   }
 };
 
-
 //login controller
 module.exports.login = async function login(req, res) {
   try {
@@ -97,22 +96,72 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
         console.log("req.id: ", req.id);
         console.log("req.role: ", req.role);
         next();
-
       } else {
         return res.json({
           message: "Please, login again",
         });
       }
-    }
-    else{
+    } else {
       res.json({
         message: "Please, login to access this page",
       });
     }
   } catch (error) {
     return res.json({
-
       message: error.message,
     });
   }
-}
+};
+
+//forget password
+module.exports.forgetpassword = async function forgetpassword(req, res) {
+  let { email } = req.body;
+  try {
+    let user = await userModel.findOne({ email: email });
+
+    if (user) {
+      //createResetToken is used to create a new token
+      const resetToken = user.createResetToken();
+      //http://localhost:3000/resetPassword/${resetToken} --> reset password link will look like this
+      let resetPasswordLink = `${req.protocol}://${req.get(
+        "host"
+      )}/resetPassword/${resetToken}`;
+      //send email to user
+      //nodemailer ---> Do it later
+    } else {
+      return res.json({
+        message: "Please signup first",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+//reset password
+module.exports.resetpassword = async function resetpassword(req, res) {
+  try {
+    const { token } = req.params.token;
+    let { password, confirmPassword } = req.body;
+    const user = await userModel.findOne({ resetToken: token });
+    if (user) {
+      //resetPasswordHandler will upadte users password in database
+      user.resetPasswordHandler(password, confirmPassword);
+      await user.save();
+      return res.json({
+        message: "Password reset successfully, please login again",
+      });
+    } else {
+      return res.json({
+        message: "Invalid token",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+
+};

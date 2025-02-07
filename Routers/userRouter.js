@@ -27,12 +27,24 @@ userRouter
 .route("/userProfile")
 .get(getUser);
 
+//forgot password route
+userRouter
+.route("/forgetPassword")
+.post(forgetPassword);
+
+//reset password route
+userRouter
+.route("/resetPassword/:token")
+.post(resetPassword);
 
 //All user only can be access by "Admin"
 app.use(isAuthorized(["admin"]));
 userRouter
 .route("")
 .get(getAllUser);
+
+
+
 
 
 

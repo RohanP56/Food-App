@@ -20,7 +20,7 @@ module.exports.updateUser = async function updateUser(req, res) {
     let dataToBeUpdate = req.body;
     let user = await userModel.findById(id);
     if (user) {
-      const keys = [];
+      let keys = [];
       for (let key in dataToBeUpdate) {
         keys.push(key);
       }

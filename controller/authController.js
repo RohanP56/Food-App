@@ -1,8 +1,11 @@
 const express = require("express");
-const userModel = require("../models/userModel.js");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const JWT_KEY = require("../secrets.js");
+const userModel = require("../models/userModel.js");
+require("dotenv").config();
+const JWT_KEY = process.env.JWT_KEY; // Use environment variables
 
+// Signup Controller
 //signup controller
 module.exports.signup = async function signup(req, res) {
   try {
@@ -25,6 +28,7 @@ module.exports.signup = async function signup(req, res) {
   }
 };
 
+
 //login controller
 module.exports.login = async function login(req, res) {
   try {
@@ -33,7 +37,8 @@ module.exports.login = async function login(req, res) {
     if (data.email) {
       let user = await userModel.findOne({ email: data.email });
       if (user) {
-        if (user.password === data.password) {
+        let isMatch = await bcrypt.compare(data.password, user.password);
+        if (isMatch) {
           let uid = user["_id"];
           let token = jwt.sign({ payload: uid }, JWT_KEY);
           res.cookie("login", token, { httpOnly: true });
@@ -82,23 +87,31 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
   try {
     let token;
     if (req.cookies.login) {
-
       token = req.cookies.login;
       let payload = jwt.verify(token, JWT_KEY);
       if (payload) {
+        console.log("payload: ", payload);
         const user = await userModel.findById(payload.payload);
         req.role = user.role;
         req.id = user.id;
+        console.log("req.id: ", req.id);
+        console.log("req.role: ", req.role);
         next();
+
       } else {
         return res.json({
           message: "Please, login again",
         });
       }
-
+    }
+    else{
+      res.json({
+        message: "Please, login to access this page",
+      });
     }
   } catch (error) {
     return res.json({
+
       message: error.message,
     });
   }

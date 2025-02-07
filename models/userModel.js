@@ -36,12 +36,9 @@ const userSchema = mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    required: true,
-    minLength: 8,
-    validate: function () {
-      return this.confirmPassword === this.password;
-    },
-    //message: "Password and confirm password do not match",
+    required: function () {
+      return this.isNew;  // Only required when creating a new user not requires when updating
+    }
   },
   role:{
     type:String,

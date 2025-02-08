@@ -1,6 +1,6 @@
 const express = require("express");
 const {getUser, getAllUser, updateUser, deleteUser, } = require("../controller/userController");
-const { signup, login, isAuthorized, protectRoute } = require("../controller/authController");
+const { signup, login, isAuthorized, protectRoute, forgetpassword, resetpassword, logout } = require("../controller/authController");
 
 const app = express();
 const userRouter = express.Router(); //created user router
@@ -30,18 +30,24 @@ userRouter
 //forgot password route
 userRouter
 .route("/forgetPassword")
-.post(forgetPassword);
+.post(forgetpassword);
 
 //reset password route
 userRouter
 .route("/resetPassword/:token")
-.post(resetPassword);
+.post(resetpassword);
+
+//logout route
+userRouter
+.route("/logout")
+.get(logout);
 
 //All user only can be access by "Admin"
 app.use(isAuthorized(["admin"]));
 userRouter
 .route("")
 .get(getAllUser);
+
 
 
 

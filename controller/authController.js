@@ -5,7 +5,6 @@ const userModel = require("../models/userModel.js");
 require("dotenv").config();
 const JWT_KEY = process.env.JWT_KEY; // Use environment variables
 
-// Signup Controller
 //signup controller
 module.exports.signup = async function signup(req, res) {
   try {
@@ -102,9 +101,17 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
         });
       }
     } else {
-      res.json({
-        message: "Please, login to access this page",
-      });
+      //if user from browser then redirect to login page
+      const client = req.get('User-Agent');
+      if(client.includes("Mozilla")===true) {
+        //redirect to login page
+        return res.redirect("/login");
+      }  //for postman user
+      else{   
+        res.json({  
+          message: "Please, login to access this page",
+        });
+      }
     }
   } catch (error) {
     return res.json({
@@ -165,3 +172,38 @@ module.exports.resetpassword = async function resetpassword(req, res) {
   }
 
 };
+
+//logout controller
+module.exports.logout = function logout(req, res) {
+  res.cookie("login", " ", { maxAge: 1 });  // old cookie will be over-write by empty string
+  return res.json({
+    message: "Logged out successfully",
+  });
+};
+
+
+/*
+//get user details
+module.exports.getUserDetails = async function getUserDetails(req, res) {
+  const user = await userModel.findById(req.id);
+  return res.json({
+    user,
+  });
+};
+
+//update user details
+module.exports.updateUserDetails = async function updateUserDetails(req, res) {
+  const user = await userModel.findByIdAndUpdate(req.id, req.body);
+  return res.json({
+    user,
+  });
+};
+
+//delete user details
+module.exports.deleteUserDetails = async function deleteUserDetails(req, res) {
+  const user = await userModel.findByIdAndDelete(req.id);
+  return res.json({
+    user,
+  });
+};
+*/

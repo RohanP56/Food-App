@@ -19,6 +19,7 @@ app.use("/user", userRouter);
 //app.use("/auth", authRouter);
 
 
+const planRouter = require("./models/planModel.js");
 
 
 

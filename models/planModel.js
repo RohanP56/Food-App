@@ -46,19 +46,6 @@ const planSchema = new mongoose.Schema({
 const planModel = mongoose.model("planModel", planSchema);
 module.exports = planModel;
 
-/*IIFE function to create a plan just for testing
-(async function createPlan(){
-    let planObj = {
-        name: "SuperMeal",
-        duration: 30,
-        price: 1000,
-        rating: 4.5,
-        discount: 10,
-    }
-    const doc = new planModel(planObj);
-    await doc.save();
-})();
-*/
 
 
 

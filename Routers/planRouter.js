@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const planRouter = express.Router();
-const { protectRoute } = require("../controller/authController");
-const { getAllPlans, getPlan, createPlan, updatePlan, deletePlan } = require("../controller/planContoller");
+const { protectRoute, isAuthorized } = require("../controller/authController");
+const { getAllPlans, getPlan, createPlan, updatePlan, deletePlan, top3Plan } = require("../controller/planContoller");
 
 //for all plans
 planRouter
@@ -27,9 +27,10 @@ planRouter
 .delete(deletePlan);
 
 
-/*
 //for top 3 plans
 planRouter
 .route("/top3")
 .get(top3Plan); 
-*/
+
+
+module.exports = planRouter;

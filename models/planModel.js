@@ -37,17 +37,36 @@ const planSchema = new mongoose.Schema({
 
   discount: {
     type: Number,
-    validate: [function () {
-      return this.discount < 100;
-    }, "Discount must be less price"],
+    validate: [
+      function () {
+        return this.discount < 100;
+      },
+      "Discount must be less price",
+    ],
+  },
+
+  numberOfReviews: {
+    type: Number,
+    default: 0,
+  },
+
+  averageReview: {
+    type: Number,
+    default: 0, // Default to 0 before any reviews
   },
 });
 
+// Function to update numberOfReviews and averageReview
+planSchema.methods.updateReviews = async function (newReviewRating) {
+  this.numberOfReviews += 1;
+  //this.averageReview = newReviewRating;
+  // Calculate new average review rating
+  this.averageReview =
+    (this.averageReview * (this.numberOfReviews - 1) + newReviewRating) /
+    this.numberOfReviews;
+
+  await this.save();
+};
+
 const planModel = mongoose.model("planModel", planSchema);
 module.exports = planModel;
-
-
-
-
-
-

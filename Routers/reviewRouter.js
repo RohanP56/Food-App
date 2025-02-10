@@ -21,7 +21,7 @@ reviewRouter
 //create review
 reviewRouter.use(protectRoute) //These actions will be used by logged in user only
 reviewRouter
-.route("/crud")
+.route("/crud/:plan")
 .post(createReview);
 
 

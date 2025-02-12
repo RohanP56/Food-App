@@ -19,7 +19,7 @@ const reviewRouter = require('./Routers/reviewRouter.js');
 //base route, router to use
 app.use("/user", userRouter);
 app.use("/plans", planRouter);
-app.use("/reviews", reviewRouter);
+app.use("/review", reviewRouter);
 //app.use("/auth", authRouter);
 
 

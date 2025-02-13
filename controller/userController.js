@@ -91,6 +91,24 @@ module.exports.getAllUser = async function getAllUser(req, res) {
 };
 
 
+//update user profile image
+module.exports.updateUserProfileImage = async function updateUserProfileImage(req, res) {
+  try {
+    let id = req.params.id;
+    let user = await userModel.findById(id);
+    if(user){
+      user.profileImage = req.file.path;
+      await user.save();
+      res.json({
+        message: "Profile image updated successfully",
+      });
+    }
+  } catch (error) {
+    res.json({
+      message: error.message,
+    });
+  }
+}
 
 
 /*

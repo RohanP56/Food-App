@@ -11,7 +11,7 @@ module.exports.signup = async function signup(req, res) {
   try {
     let dataObj = req.body;
     let user = await userModel.create(dataObj);
-    await sendMail("signup", user);
+    sendMail("signup", user);
     if (user) {
       res.json({
         message: "user signed up",
@@ -140,7 +140,7 @@ module.exports.forgetpassword = async function forgetpassword(req, res) {
         resetPasswordLink: resetPasswordLink,
         email: email,
       };
-      await sendMail("resetpassword", obj);
+      sendMail("resetpassword", obj);
       return res.json({
         message: "Please check your email for reset password link",
       });

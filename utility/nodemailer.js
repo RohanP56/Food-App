@@ -1,14 +1,13 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config();
 
 module.exports.sendMail = async function sendMail(str, data) {
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false, // true for port 465, false for other ports
     auth: {
       user: "rp3003857@gmail.com",
-      pass: "dltt nyde dzpt mczf",
+      pass: "vbsrqckyzpafjeoz",
     },
   });
 
@@ -22,11 +21,11 @@ module.exports.sendMail = async function sendMail(str, data) {
     Name: ${data.name}
     Email: ${data.email}`;
   } 
-  else if (str == "forgetpassword") {
+  else if (str == "resetpassword") {
     Osubject = `Reset Password`;
     Ohtml = `
-    <h1>Reset Password</h1>
-    Here is your link to set new password!
+    <h1>FoodApp.com</h1>
+    Here is your link to set new password !
     ${data.resetPasswordLink}`;
   }
 

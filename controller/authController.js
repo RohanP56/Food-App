@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel.js");
+const { sendMail } = require("../utility/nodemailer.js");
 require("dotenv").config();
 const JWT_KEY = process.env.JWT_KEY; // Use environment variables
 
@@ -10,6 +11,7 @@ module.exports.signup = async function signup(req, res) {
   try {
     let dataObj = req.body;
     let user = await userModel.create(dataObj);
+    await sendMail("signup", user);
     if (user) {
       res.json({
         message: "user signed up",
@@ -102,13 +104,13 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
       }
     } else {
       //if user from browser then redirect to login page
-      const client = req.get('User-Agent');
-      if(client.includes("Mozilla")===true) {
+      const client = req.get("User-Agent");
+      if (client.includes("Mozilla") === true) {
         //redirect to login page
         return res.redirect("/login");
-      }  //for postman user
-      else{   
-        res.json({  
+      } //for postman user
+      else {
+        res.json({
           message: "Please, login to access this page",
         });
       }
@@ -134,7 +136,14 @@ module.exports.forgetpassword = async function forgetpassword(req, res) {
         "host"
       )}/resetPassword/${resetToken}`;
       //send email to user
-      //nodemailer ---> Do it later
+      let obj = {
+        resetPasswordLink: resetPasswordLink,
+        email: email,
+      };
+      await sendMail("resetpassword", obj);
+      return res.json({
+        message: "Please check your email for reset password link",
+      });
     } else {
       return res.json({
         message: "Please signup first",
@@ -170,17 +179,15 @@ module.exports.resetpassword = async function resetpassword(req, res) {
       message: error.message,
     });
   }
-
 };
 
 //logout controller
 module.exports.logout = function logout(req, res) {
-  res.cookie("login", " ", { maxAge: 1 });  // old cookie will be over-write by empty string
+  res.cookie("login", " ", { maxAge: 1 }); // old cookie will be over-write by empty string
   return res.json({
     message: "Logged out successfully",
   });
 };
-
 
 /*
 //get user details

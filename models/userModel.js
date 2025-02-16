@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const emailValidator = require("email-validator");
+require('dotenv').config();
+
 
 //database connection
-const db_link =
-  "mongodb+srv://admin:30Rm0SDcjdyMJP1y@cluster0.zs2x3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const db_link = process.env.DB_LINK;
 mongoose
   .connect(db_link)
   .then(function (db) {

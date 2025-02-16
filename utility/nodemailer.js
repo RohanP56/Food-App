@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+require('dotenv').config();
+
 
 module.exports.sendMail = async function sendMail(str, data) {
   const transporter = nodemailer.createTransport({
@@ -6,8 +8,8 @@ module.exports.sendMail = async function sendMail(str, data) {
     port: 587,
     secure: false, // true for port 465, false for other ports
     auth: {
-      user: "rp3003857@gmail.com",
-      pass: "vbsrqckyzpafjeoz",
+      user: process.env.MAIL_ACCOUNT,
+      pass: process.env.MAIL_PASS,
     },
   });
 

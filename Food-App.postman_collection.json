@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "e30f54d2-78a3-4b32-8932-bf664f022c53",
+		"name": "Food-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36856326"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ben@ibm.com\",\r\n    \"password\": \"ben123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rohan\",\r\n    \"email\": \"devx.rohan@outlook.com\",\r\n    \"password\": \"13456789\",\r\n    \"confirmPassword\": \"13456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Peter Parker\",\r\n    \"email\": \"peterparker331@hotmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/67a5950d48556947287384e1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"67a5950d48556947287384e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user/67a581d526139e5bee49c70c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"67a581d526139e5bee49c70c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plans",
+			"item": [
+				{
+					"name": "AllPlans",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/plans/allPlans/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"plans",
+								"allPlans",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlan",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\":150,\r\n    \"duration\": 10,\r\n    \"name\": \"Momo\",\r\n    \"ratingsAverage\": 3.7,\r\n    \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/plans/crudPlan",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"plans",
+								"crudPlan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPaln",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\":99,\r\n    \"duration\": 7,\r\n    \"name\": \"Chips and Queso\",\r\n    \"ratingsAverage\": 3.7,\r\n    \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/plans/crudPlan",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"plans",
+								"crudPlan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePlan",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/plans/crudPlan/67a6e8d38f4002a5f5b21e4e",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"plans",
+								"crudPlan",
+								"67a6e8d38f4002a5f5b21e4e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top3Plans",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/plans/top3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"plans",
+								"top3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "getAllReview",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/review/all",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createReview",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"review\": \"Worst Momo Ever\",\r\n    \"rating\": 2.7,\r\n    \"plan\": \"67a84aea0974040883497e42\",\r\n    \"user\": \"67a6e21bfc784bd8d063ae73\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/review/crud/67a84aea0974040883497e42",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"crud",
+								"67a84aea0974040883497e42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top3",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/review/top3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"top3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top3Ratings",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/review/top3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"top3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlanReview",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/review/67a84acd0974040883497e3f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"67a84acd0974040883497e3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateReview",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"67aaaf915eb346d5edf49edc\",\r\n    \"review\": \"Not good for health\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/review/crud/67aaaf915eb346d5edf49edc",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"crud",
+								"67aaaf915eb346d5edf49edc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
